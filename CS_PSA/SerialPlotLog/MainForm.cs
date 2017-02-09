@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+//using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -20,18 +20,46 @@ namespace SerialPlotLog
         SerialPortManager _spManager;
         long rt = 0; 
         List<Reading> readings = new List<Reading>();
+        List<float> autocorrelation = new List<float>();
+        List<float> autocorr = new List<float>();
         int rtrd = 0;
+        int rtrds = 0;
 
-        public float Mean(float[] x)
+        public float Mean(List<float> x)
         {
             float sum = 0;
-            for (int i = 0; i < x.Length; i++)
+            for (int i = 0; i < x.Count; i++)
                 sum += x[i];
-            return sum / x.Length;
+            return sum / x.Count;
+        }
+
+        public List<float> Autocorrelation(List<float> o)
+        {
+            
+            float mean = Mean(o);
+            for (int t = 0; t < o.Count/2; t++)
+            {
+                float n = 0; // Numerator
+                float d = 0; // Denominator
+
+                for (int i = 0; i < o.Count; i++)
+                {
+                    float xim = o[i] - mean;
+                    n += xim * (o[(i + t) % o.Count] - mean);
+                    d += xim * xim;
+                }
+
+                float hitung = n / d;
+
+                autocorr.Add(hitung);
+            }
+
+            return autocorr;
         }
 
         List<string> listdata = new List<string>();
         List<float> listfloat = new List<float>();
+        
 
         public class Reading
         {
@@ -95,6 +123,33 @@ namespace SerialPlotLog
 
             cartesianChart1.LegendLocation = LegendLocation.Right;
 
+            cartesianChart2.Series = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Title = "ACF",
+                    Values = new ChartValues<float> {},
+                    LineSmoothness = 0,
+                    PointGeometry = DefaultGeometries.Circle,
+                    PointGeometrySize = 1,
+                    Stroke = Brushes.Green
+                }
+            };
+
+            cartesianChart2.AxisX.Add(new Axis
+            {
+                Title = "Data",
+                LabelFormatter = rt => rt.ToString()
+            });
+
+            cartesianChart2.AxisY.Add(new Axis
+            {
+                Title = "AC",
+                LabelFormatter = value => value.ToString()
+            });
+
+            cartesianChart2.LegendLocation = LegendLocation.Right;
+
             //modifying the series collection will animate and update the chart
             //cartesianChart1.Series.Add(new LineSeries
             //{
@@ -153,9 +208,11 @@ namespace SerialPlotLog
             listfloat.Add(float.Parse(e.Nilai));
             rt += 1;
             rtrd = listdata.Count();
-            if (rtrd.Equals(50))
+            if (rtrd.Equals(int.Parse(textBox1.Text)))
             {
                 _spManager.StopListening();
+                listfloat.RemoveAt(0);
+                rtrds = listfloat.Count;
 
             }
             
@@ -210,11 +267,9 @@ namespace SerialPlotLog
         // Handles the "Start Listening"-buttom click event
         private void btnStart_Click(object sender, EventArgs e)
         {
+            listdata.Clear();
             _spManager.StartListening();
-
-
-
-
+            
             //MessageBox.Show(cartesianChart1.Series[0].Values[1].ToString());
             /*
             try
@@ -253,7 +308,7 @@ namespace SerialPlotLog
         {
             //_spManager.Write();
 
-            string rtrs = rtrd.ToString();
+            string rtrs = rtrds.ToString();
             _spManager.StopListening();
             MessageBox.Show(rtrs);
 
@@ -264,14 +319,23 @@ namespace SerialPlotLog
         public void button3_Click(object sender, EventArgs e)
         {
             cartesianChart1.Series[0].Values.Clear();
-            for (int uu = 0; uu < 50; uu++)
+            cartesianChart2.Series[0].Values.Clear();
+
+            for (int uu = 0; uu < listfloat.Count; uu++)
             {
                 cartesianChart1.Series[0].Values.Add(listfloat[uu]);
             }
 
+            autocorrelation = Autocorrelation(listfloat);
             
-                   // cartesianChart1.Series[0].Values.Add(ArrayNilai);
-  
+
+            for (int uuu = 0; uuu < listfloat.Count/2; uuu++)
+            {
+                cartesianChart2.Series[0].Values.Add(autocorrelation[uuu]);
+            }
+
+            // cartesianChart1.Series[0].Values.Add(ArrayNilai);
+
             //Random rnd = new Random();
 
             //var reading = new Reading

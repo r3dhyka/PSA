@@ -39,7 +39,6 @@ namespace SerialPlotLog
             System.Windows.Forms.Label portNameLabel;
             System.Windows.Forms.Label stopBitsLabel;
             this.baudRateComboBox = new System.Windows.Forms.ComboBox();
-            this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataBitsComboBox = new System.Windows.Forms.ComboBox();
             this.parityComboBox = new System.Windows.Forms.ComboBox();
             this.portNameComboBox = new System.Windows.Forms.ComboBox();
@@ -50,13 +49,17 @@ namespace SerialPlotLog
             this.btnStop = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+            this.cartesianChart2 = new LiveCharts.WinForms.CartesianChart();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             baudRateLabel = new System.Windows.Forms.Label();
             dataBitsLabel = new System.Windows.Forms.Label();
             parityLabel = new System.Windows.Forms.Label();
             portNameLabel = new System.Windows.Forms.Label();
             stopBitsLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // baudRateLabel
@@ -112,10 +115,6 @@ namespace SerialPlotLog
             this.baudRateComboBox.Name = "baudRateComboBox";
             this.baudRateComboBox.Size = new System.Drawing.Size(121, 21);
             this.baudRateComboBox.TabIndex = 2;
-            // 
-            // serialSettingsBindingSource
-            // 
-            this.serialSettingsBindingSource.DataSource = typeof(SerialPlotLog.Serial.SerialSettings);
             // 
             // dataBitsComboBox
             // 
@@ -187,11 +186,11 @@ namespace SerialPlotLog
             this.tbData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbData.Location = new System.Drawing.Point(12, 260);
+            this.tbData.Location = new System.Drawing.Point(20, 260);
             this.tbData.Multiline = true;
             this.tbData.Name = "tbData";
             this.tbData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbData.Size = new System.Drawing.Size(316, 208);
+            this.tbData.Size = new System.Drawing.Size(308, 208);
             this.tbData.TabIndex = 13;
             // 
             // btnStop
@@ -216,17 +215,48 @@ namespace SerialPlotLog
             // 
             // cartesianChart1
             // 
-            this.cartesianChart1.Location = new System.Drawing.Point(364, 26);
+            this.cartesianChart1.Location = new System.Drawing.Point(446, 26);
             this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(702, 201);
+            this.cartesianChart1.Size = new System.Drawing.Size(643, 201);
             this.cartesianChart1.TabIndex = 15;
             this.cartesianChart1.Text = "cartesianChart1";
+            // 
+            // cartesianChart2
+            // 
+            this.cartesianChart2.Location = new System.Drawing.Point(446, 260);
+            this.cartesianChart2.Name = "cartesianChart2";
+            this.cartesianChart2.Size = new System.Drawing.Size(643, 201);
+            this.cartesianChart2.TabIndex = 16;
+            this.cartesianChart2.Text = "cartesianChart2";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(243, 91);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 17;
+            // 
+            // serialSettingsBindingSource
+            // 
+            this.serialSettingsBindingSource.DataSource = typeof(SerialPlotLog.Serial.SerialSettings);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(244, 70);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(106, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Number of sampling :";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1156, 484);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cartesianChart2);
             this.Controls.Add(this.cartesianChart1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.tbData);
@@ -235,9 +265,9 @@ namespace SerialPlotLog
             this.Controls.Add(this.groupBox1);
             this.Name = "MainForm";
             this.Text = " ";
-            ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,6 +287,9 @@ namespace SerialPlotLog
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button button3;
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
+        private LiveCharts.WinForms.CartesianChart cartesianChart2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
