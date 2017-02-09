@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SerialPortListener.MainForm">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="SerialPortListener.MainForm.Reading">
+        <TypeIdentifier>
+          <NewMemberFileName>MainForm.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IFAgAECBAGEAEAAAAQCAIAACAAAgAlAAALQAAAAAAAQ=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SerialPortListener.Program">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SerialPortListener.Properties.Resources">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SerialPortListener.Properties.Settings">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SerialPortListener.Serial.SerialPortManager" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="1.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABCAAAAAAAAACIAABAAAAAIIAAAAIEAUAAIA=</HashCode>
+      <FileName>SerialPortManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SerialPortListener.Serial.SerialDataEventArgs">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>SerialPortManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SerialPortListener.Serial.SerialSettings" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAgCEAACAAICAIAABAAAgAgAACAAAAAAAMAIAUAAA=</HashCode>
+      <FileName>SerialSettings.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.115" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
